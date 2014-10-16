@@ -1,6 +1,5 @@
-var hapi = require('hapi'),
-	mongoose = require('mongoose'),
-	User = require('./user-model'),
+var Hapi = require('hapi'),
+	Mongoose = require('mongoose'),
 	routes = require('./routes/all_routes').routes;
 
 // Variables that need to be configured
@@ -9,54 +8,55 @@ var databaseName = 'mydatabase',
 	serverPort = 8000;
 
 // Setup and connect to the database
-mongoose.connect('mongodb://localhost/' + databaseName);
-var db = mongoose.connection;
+Mongoose.connect('mongodb://localhost/' + databaseName);
+var db = Mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
-	console.log("connected to database " + databaseName);
+	console.log("connected to database:", databaseName);
 });
-
-// Setup the server options
-var serverOptions = {
-	views: {
-		path: 'html_templates',
-		engines: {
-			html: 'handlebars'
-		}
-	}
-};
 
 // Configure the server
-var server = new hapi.Server('localhost', serverPort, serverOptions);
+var server = new Hapi.Server(serverPort);
 
-// Setup the session tracking
-// Change 'isSecure' to true if using SSL
+// Setup Handlebars for the server
+server.views({
+	engines: {
+		html: require('handlebars')
+	},
+	path: './html_templates'
+});
+
+// Setup the session/cookie plugin
 var yarOptions = {
-	ttl: 3 * 24 * 60 * 60 * 1000, // 3 days
 	cookieOptions: {
 		password: cookiePassword,
-		isSecure: false
+		isSecure: false // Required if not using https
 	}
 };
 
-// Setup the Hapi plugins being used. In this case it's only Yar
-server.pack.require({ yar: yarOptions }, function (err) {
-    if (err) {
-        console.log('Failed loading plugins');
-    }
-});
-
-// Setup the routes
-server.route(routes);
-
-// Redirect request to missing resources to '404.html'
-server.ext('onPreResponse', function (request, next) {
-	if (typeof(request.response.output) !== 'undefined' && request.response.output.statusCode === 404) {
-		next.view('404.html', {});
-	} else {
-		next();
+// Register the Yar plugin
+server.pack.register({
+    plugin: require('yar'),
+    options: yarOptions
+}, function (err) {
+	if (err) {
+		console.log("Error loading pack:", err);
 	}
+	
+	// Setup the routes
+	server.route(routes);
+	
+	// Redirect request to missing resources to '404.html'
+	server.ext('onPreResponse', function (request, next) {
+		if (typeof(request.response.output) !== 'undefined' && request.response.output.statusCode === 404) {
+			next.view('index.html', {});
+		} else {
+			next();
+		}
+	});
+	
+	// Start the server
+	server.start();
+	
+	console.log("Server started");
 });
-
-// Start the server
-server.start();

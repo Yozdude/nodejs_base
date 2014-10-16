@@ -1,3 +1,3 @@
-static_routes = require('./routes/static_routes').routes;
+static_routes = require('./static_routes').routes;
 
 module.exports.routes = static_routes

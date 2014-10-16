@@ -4,9 +4,13 @@ var hapi = require('hapi')
 // Used to provide css, js, and image files.
 var staticRoute = {
 	method: 'GET',
-    path: '/{path*}',
+    path: '/{param*}',
     handler: {
-        directory: { path: './public', listing: false, index: true }
+        directory: {
+        	path: 'public',
+        	listing: false,
+        	index: true
+        }
     }
 };
 
