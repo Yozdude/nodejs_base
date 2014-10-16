@@ -49,7 +49,7 @@ server.pack.register({
 	// Redirect request to missing resources to '404.html'
 	server.ext('onPreResponse', function (request, next) {
 		if (typeof(request.response.output) !== 'undefined' && request.response.output.statusCode === 404) {
-			next.view('index.html', {});
+			next.view('404.html', {});
 		} else {
 			next();
 		}

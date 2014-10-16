@@ -14,4 +14,13 @@ var staticRoute = {
     }
 };
 
-module.exports.routes = [staticRoute]
+// Serve the default route
+var defaultRoute = {
+	method: 'GET',
+	path: '/',
+	handler: function(req, reply) {
+		reply.view('index.html', {});
+	}
+}
+
+module.exports.routes = [staticRoute, defaultRoute]
