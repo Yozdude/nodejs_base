@@ -1,3 +1,5 @@
-static_routes = require('./static_routes').routes;
+static_routes = require('./static_routes').routes,
+	all_routes = [];
 
-module.exports.routes = static_routes
+Array.prototype.push.apply(all_routes, static_routes);
+module.exports.routes = all_routes;

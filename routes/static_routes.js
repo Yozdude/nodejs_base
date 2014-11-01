@@ -1,5 +1,3 @@
-var hapi = require('hapi')
-
 // Serve all files in the 'public' folder as static resources.
 // Used to provide css, js, and image files.
 var staticRoute = {
