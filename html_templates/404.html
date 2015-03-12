@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Node.js Base App</title>
-		<link rel="icon" type="image/png" href="./img/favicon.png">
-		<link rel="stylesheet" href="./css/css.css">
-	</head>
-	<body>
-		<h1>404</h1>
-		<h2>The page you are looking for could not be found.</h2>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>404</h1>
+  <h2>The page you are looking for could not be found.</h2>
+{% endblock %}

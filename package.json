@@ -4,10 +4,15 @@
   "description": "Base project for nodejs",
   "main": "main.js",
   "dependencies": {
-    "handlebars": "^2.0.0",
-    "hapi": "^7.0.0",
-    "mongoose": "^3.8.17",
-    "yar": "^2.4.0"
+    "bcrypt": "^0.8.1",
+    "hapi": "^8.2.0",
+    "hapi-auth-cookie": "^2.0.0",
+    "joi": "^6.0.8",
+    "mongoose": "^3.8.24",
+    "nunjucks": "^1.2.0",
+    "nunjucks-hapi": "^1.1.0",
+    "path": "^0.11.14",
+    "q": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Node.js Base App</title>
-		<link rel="icon" type="image/png" href="./img/favicon.png">
-		<link rel="stylesheet" href="./css/css.css">
-	</head>
-	<body>
-		<h1>Welcome!</h1>
-		<h2>This is index.html, where something more interesting should go.</h2>
-		<img src="./img/favicon.png"/>
-</html>
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Welcome!</h1>
+  <h2>This is index.html, where something more interesting should go.</h2>
+  <img src="public/img/favicon.png"/>
+{% endblock %}
