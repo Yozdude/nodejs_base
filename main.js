@@ -80,14 +80,6 @@ function setupHapi () {
         });
     });
 
-    // Potentially log all incoming requests
-    /*
-    server.ext('onRequest', function (request, next) {
-        console.log(request.path, request.query);
-        next();
-    });
-    */
-
     // Create the routes
     server.route(require('./hapi_routes/all'));
 

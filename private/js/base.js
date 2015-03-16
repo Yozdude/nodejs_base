@@ -11,11 +11,11 @@ function flashMessage(message, type) {
     var dom = $("#primaryAlert");
     dom.removeClass("alert-success").removeClass("alert-info")
         .removeClass("alert-warning").removeClass("alert-danger");
-    if (type == 0) {
+    if (type === 0) {
         dom.addClass("alert-success");
-    } else if (type == 1) {
+    } else if (type === 1) {
         dom.addClass("alert-info");
-    } else if (type == 2) {
+    } else if (type === 2) {
         dom.addClass("alert-warning");
     } else {
         dom.addClass("alert-danger");
@@ -54,4 +54,4 @@ $(function () {
             console.log(xhr);
         }
     });
-})
+});

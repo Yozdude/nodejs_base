@@ -1,0 +1,17 @@
+{
+  "name": "nodejs_base",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Yozdude/nodejs_base",
+  "authors": [
+    "Yozdude"
+  ],
+  "main": "main.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "sweetalert": "~0.4.2"
+  }
+}

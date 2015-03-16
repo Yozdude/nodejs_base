@@ -1,5 +1,6 @@
 var Joi = require('joi'),
     User = require('../database_models/user'),
+    RouteAuthentication = require('../tools/route_authentication'),
     Config = require('../config');
 
 // The login page
@@ -7,15 +8,6 @@ var loginPageRoute = {
     method: 'GET',
     path: '/login',
     config: {
-        auth: {
-            mode: 'try',
-            strategy: 'session'
-        },
-        plugins: {
-            'hapi-auth-cookie': {
-                redirectTo: false
-            }
-        },
         handler: function(request, reply) {
             if (request.auth.isAuthenticated) {
                 return reply.redirect('/');
@@ -26,7 +18,7 @@ var loginPageRoute = {
     }
 };
 
-// Attempts to log the user in given the credentials
+// Attempts to log the user in given credentials
 var loginPostRoute = {
     method: 'POST',
     path: '/login',
@@ -35,15 +27,6 @@ var loginPostRoute = {
             payload: {
                 email: Joi.string().email().required(),
                 password: Joi.string().required()
-            }
-        },
-        auth: {
-            mode: 'try',
-            strategy: 'session'
-        },
-        plugins: {
-            'hapi-auth-cookie': {
-                redirectTo: false
             }
         },
         handler: function(request, reply) {
@@ -88,14 +71,15 @@ var logoutPostRoute = {
     method: ['GET', 'POST'],
     path: '/logout',
     config: {
-        auth: 'session',
         handler: function(request, reply) {
             request.auth.session.clear();
             return reply.redirect("/");
-            //reply.view("/", { app: Config.app });
         }
     }
 }
 
+RouteAuthentication.tryLogin(loginPageRoute);
+RouteAuthentication.tryLogin(loginPostRoute);
+RouteAuthentication.requireLogin(logoutPostRoute);
 
 module.exports = [loginPageRoute, loginPostRoute, logoutPostRoute]

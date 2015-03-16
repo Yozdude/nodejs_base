@@ -13,33 +13,43 @@ TODO
 Setup
 ------------
 
-TODO
+1. Install [Node.js][], [NPM][], [Bower][], and [Gulp][] if you haven't already.
+2.
 
 
 Tech Stack
 ------------
 
-  - [Hapi][] - Web framework engine
-  - [MongoDB][], [Mongoose][] - Persistent storage database
-  - [Nunjucks][] - Templating engine
-  - [Bootstrap][], [FontAwesome][] - Base styling template and icons
+- [Node.js][] - Server-side Javascript language
+- [NPM][] - Node.js package manager
+- [Bower][] - Package manager
+- [Gulp][] - Build andnworkflow automation
+- [MongoDB][], [Mongoose][] - Persistent storage database
+- [Hapi][] - Web framework engine
+- [Nunjucks][] - Templating engine
+- [Bootstrap][], [FontAwesome][] - HTML styling template and icons
 
 
 TODO
 ------------
 
-  - Add minification
-  - Switch from css to less/sass/whatever
-  - Add live-change updating (like nodemon, but detects changes in css, html, etc)
-  - Add caching
-  - Make more of the user routing login use promises
-  - Add actual logging (instead of just printing to console)
-  - Add some basic debug options
+- Minify HTML templates
+- Add live-change updating (like nodemon, but detects changes in css, html, etc). BrowserSync perhaps?
+- Abstract promise-based commands for the database
+- Abstract away generic paths for generic models
+- Add caching
+- Make more of the user routing login use promises
+- Add actual logging (instead of just printing to console)
+- Add some basic debug options
 
 
-[Hapi]: http://hapijs.com/
+[Node.js]: https://nodejs.org/
+[NPM]: https://www.npmjs.com/
+[Bower]: http://bower.io/
+[Gulp]: http://gulpjs.com/
 [MongoDB]: http://www.mongodb.org/
-[Mongoode]: http://mongoosejs.com/
+[Mongoose]: http://mongoosejs.com/
+[Hapi]: http://hapijs.com/
 [Nunjucks]: http://mozilla.github.io/nunjucks/
 [Bootstrap]: http://getbootstrap.com/
 [FontAwesome]: http://fortawesome.github.io/Font-Awesome/

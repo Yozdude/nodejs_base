@@ -1,3 +1,6 @@
+var RouteAuthentication = require('../tools/route_authentication'),
+    Config = require('../config');
+
 // Serve all files in the 'public' folder as static resources.
 // Used to provide css, js, and image files.
 var staticFileRoute = {
@@ -17,7 +20,9 @@ var FileNotFoundRoute = {
     method: '*',
     path: '/{p*}',
     handler: function(request, reply) {
-        reply.view("404.html", {}).code(404);
+        reply.view("404.html", {
+            app: Config.app
+        }).code(404);
     }
 }
 
@@ -26,12 +31,15 @@ var indexRoute = {
     method: 'GET',
     path: '/',
     config: {
-        auth: 'session',
         handler: function(request, reply) {
-            // TODO: add user from request.auth.session and config data
-            reply.view('index.html', {});
+            reply.view('index.html', {
+                app: Config.app,
+                user: request.auth.credentials
+            });
         }
     }
 }
 
+
+RouteAuthentication.requireLogin(indexRoute);
 module.exports = [staticFileRoute, FileNotFoundRoute, indexRoute]
