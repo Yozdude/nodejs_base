@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Feature Showcase</h1>
+  <h2>Messages</h2>
+  <button class="btn btn-success" onclick="$.post('/showcase/message/success', {})">Success Message</button>
+  <button class="btn btn-info" onclick="$.post('/showcase/message/info', {})">Info Message</button>
+  <button class="btn btn-warning" onclick="$.post('/showcase/message/warning', {})">Warning Message</button>
+  <button class="btn btn-danger" onclick="$.post('/showcase/message/error', {})">Error Message</button>
+  <h2>Redirect</h2>
+  <button class="btn btn-primary" onclick="$.post('/showcase/redirect', {})">Redirect</button>
+  <h2>Popups</h2>
+  <button class="btn btn-default" onclick="$.post('/showcase/popup/generic', {})">Generic Popup</button>
+  <button class="btn btn-success" onclick="$.post('/showcase/popup/success', {})">Success Popup</button>
+  <button class="btn btn-warning" onclick="$.post('/showcase/popup/warning', {})">Warning Popup</button>
+  <button class="btn btn-danger" onclick="$.post('/showcase/popup/error', {})">Error Popup</button>
+{% endblock %}

@@ -14,7 +14,7 @@ Setup
 ------------
 
 1. Install [Node.js][], [NPM][], [Bower][], and [Gulp][] if you haven't already.
-2.
+2. TODO
 
 
 Tech Stack
@@ -28,11 +28,13 @@ Tech Stack
 - [Hapi][] - Web framework engine
 - [Nunjucks][] - Templating engine
 - [Bootstrap][], [FontAwesome][] - HTML styling template and icons
+- [SweetAlert][] - Nice-looking alerts
 
 
 TODO
 ------------
 
+- Make the whole application single-page friendly (this may seem to go against the spirit of templating, but given that both are optional would be a powerful feature to have).
 - Minify HTML templates
 - Add live-change updating (like nodemon, but detects changes in css, html, etc). BrowserSync perhaps?
 - Abstract promise-based commands for the database
@@ -53,3 +55,4 @@ TODO
 [Nunjucks]: http://mozilla.github.io/nunjucks/
 [Bootstrap]: http://getbootstrap.com/
 [FontAwesome]: http://fortawesome.github.io/Font-Awesome/
+[SweetAlert]: http://tristanedwards.me/sweetalert

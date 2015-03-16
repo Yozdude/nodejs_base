@@ -20,7 +20,7 @@ function flashMessage(message, type) {
     } else {
         dom.addClass("alert-danger");
     }
-    $("#primaryAlert").text(message).fadeIn(250).delay(message.length * 100).fadeOut(250);
+    $("#primaryAlert").text(message).finish().slideDown(250).delay(message.length * 100).slideUp(250);
 }
 
 // Shortcuts for displaying different types of popup messages
@@ -33,16 +33,19 @@ function flashError(message) { flashMessage(message, 3); }
 $(function () {
     $(document).ajaxSuccess(function (event, xhr, settings) {
         if (xhr.responseJSON) {
-            if (xhr.responseJSON.redirect) {
-                window.location.replace(window.location.origin + xhr.responseJSON.redirect);
-            } else if (xhr.responseJSON.error) {
-                flashError(xhr.responseJSON.error);
-            } else if (xhr.responseJSON.warning) {
-                flashWarning(xhr.responseJSON.warning);
-            } else if (xhr.responseJSON.info) {
-                flashInfo(xhr.responseJSON.info);
-            } else if (xhr.responseJSON.success) {
-                flashSuccess(xhr.responseJSON.success);
+            var response = xhr.responseJSON;
+            if (response.redirect) {
+                window.location.href = window.location.origin + xhr.responseJSON.redirect;
+            } else if (response.error) {
+                flashError(response.error);
+            } else if (response.warning) {
+                flashWarning(response.warning);
+            } else if (response.info) {
+                flashInfo(response.info);
+            } else if (response.success) {
+                flashSuccess(response.success);
+            } else if (response.popup) {
+                swal(response.popup);
             }
         }
     });

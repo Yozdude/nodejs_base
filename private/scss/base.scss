@@ -12,12 +12,15 @@ body .btn {
 }
 
 .alert-primary {
-    width: 90%;
-    left: 5%;
-    bottom: 20%;
+    bottom: 0px;
+    left: 0px;
+    display: none;
+    width: 100%;
+    position: fixed;
     font-size: 20px;
     text-align: center;
-    position: fixed;
+    margin: 0px;
+    border-radius: 0px;
 }
 
 /*
