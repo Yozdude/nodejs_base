@@ -1,17 +1,22 @@
-var Path = require('path');
+var path = require('path');
 
 module.exports = {
-    mongo: {
-        // If you need a username and password, add them as 'username' and 'password' fields
-        address: 'localhost',
-        port: '27017',
-        database: 'nodejs_base'
+    database: {
+        connections: {
+            localDiskDb: {
+                adapter: 'disk'
+            }
+        },
+        adapters: {
+            disk: require('sails-disk')
+        },
+        models: require('./database_models/all')
     },
     server: {
         port: 8000
     },
     nunjucks: {
-        templatePath: Path.join(__dirname, 'html_templates')
+        templatePath: path.join(__dirname, 'html_templates')
     },
     app: {
         name: "Node.js Base",

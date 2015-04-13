@@ -1,9 +1,21 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var Waterline = require('waterline');
 
+var Preferences = {
+    tableName: 'preferences',
+    schema: false,
+    connection: 'localDiskDb',
 
-var PreferencesSchema = new Schema({
-	userSignupAllowed: { type: Boolean, default: true },
-});
+    attributes: {
+        userSignupAllowed: {
+            type: 'boolean',
+            defaultsTo: true
+        },
 
-module.exports = mongoose.model('Preferences', PreferencesSchema);
+        toJSON: function() {
+            var obj = this.toObject()
+            return obj;
+        }
+    }
+};
+
+module.exports = Preferences;

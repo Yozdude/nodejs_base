@@ -1,5 +1,5 @@
 var Joi = require('joi'),
-    User = require('../database_models/user'),
+    //User = require('../database_models/user'),
     RouteAuthentication = require('../tools/route_authentication'),
     Config = require('../config');
 
@@ -18,7 +18,7 @@ var loginPageRoute = {
     }
 };
 
-// Attempts to log the user in given credentials
+// Attempts to log the user in with the given credentials
 var loginPostRoute = {
     method: 'POST',
     path: '/login',
@@ -34,30 +34,32 @@ var loginPostRoute = {
                 reply({ redirect: "/" });
             }
 
+            var User = request.model.user;
+
             User.findOne({ email: request.payload.email }, function (err, user) {
                 if (err) throw err;
 
                 if (user) {
-                    user.comparePassword(request.payload.password, function(err, isMatch) {
+                    user.verifyPassword(request.payload.password, function(err, isMatch) {
                         if (err) throw err;
 
                         if (isMatch) {
-                            request.auth.session.set(user.getNonSensitiveData());
+                            request.auth.session.set(user.toJSON());
                             reply({ redirect: "/" });
                         } else {
                             reply({ error: "Invalid credentials" });
                         }
                     });
                 } else {
-
-                    var newUser = new User({
+                    console.log("creating user");
+                    User.create({
                         email: request.payload.email,
                         password: request.payload.password
-                    });
-                    newUser.save(function (err) {
+                    }, function (err, newUser) {
                         if (err) throw err;
 
-                        request.auth.session.set(newUser.getNonSensitiveData());
+                        console.log(newUser.toJSON());
+                        request.auth.session.set(newUser.toJSON());
                         reply({ redirect: "/" });
                     });
                 }

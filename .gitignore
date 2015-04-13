@@ -29,3 +29,6 @@ bower_components
 # Minified files
 *.min.css
 *.min.js
+
+# Database Files
+.tmp

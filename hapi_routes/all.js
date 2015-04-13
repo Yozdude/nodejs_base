@@ -1,9 +1,6 @@
-var static_routes = require('./static'),
-	authentication_routes = require('./authentication'),
-    showcase_routes = require('./showcase'),
-	all_routes = [];
+var all_routes = [];
 
-Array.prototype.push.apply(all_routes, static_routes);
-Array.prototype.push.apply(all_routes, authentication_routes);
-Array.prototype.push.apply(all_routes, showcase_routes);
+Array.prototype.push.apply(all_routes, require('./static'));
+Array.prototype.push.apply(all_routes, require('./authentication'));
+Array.prototype.push.apply(all_routes, require('./showcase'));
 module.exports = all_routes;
