@@ -34,9 +34,9 @@ Tech Stack
 - [Gulp][] - Build andnworkflow automation
 - [Hapi][] - Web framework
 - [Waterline][], [Dog Water][] - Abstracted ORM management and hook into web framework
-- [Bluebird][] - Promises
-- [Async][] - Command execution structuring
+- [Bluebird][], [Async][] - Promises and command-execution structuring
 - [Joi][] - Verification of endpoint arguments
+- [Winston][] - Logging
 - [Nunjucks][], [Nunjucks Hapi][] - Templating engine and hook into web framework
 - [Bootstrap][], [FontAwesome][] - HTML styling template and icons
 - [SweetAlert][] - Nice-looking alerts
@@ -45,16 +45,10 @@ Tech Stack
 TODO
 ------------
 
-- Load Preferences again now that Waterline is being used
-- Remove async if it's really not being used anywhere
-- Make models importable from a single file (as opposed to importing via the request object)
 - Make the whole application single-page friendly (this may seem to go against the spirit of templating, but given that both are optional it would be a powerful feature to have)
 - Minify HTML templates
 - Add live-change updating (like nodemon, but detects changes in css, html, etc). BrowserSync perhaps?
-- Move model-interaction to use promises (already provided in Waterline)
 - Add caching
-- Add the rest of the libraries used in package.json and bower.json
-- Add actual logging (instead of just printing to console)
 - Add some basic debug options
 
 
@@ -68,6 +62,7 @@ TODO
 [Bluebird]: https://github.com/petkaantonov/bluebird
 [Async]: https://github.com/caolan/async
 [Joi]: https://github.com/hapijs/joi
+[Winston]: https://github.com/winstonjs/winston
 [Nunjucks]: http://mozilla.github.io/nunjucks/
 [Nunjucks Hapi]: https://github.com/seldo/nunjucks-hapi
 [Bootstrap]: http://getbootstrap.com/

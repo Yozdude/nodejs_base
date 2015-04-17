@@ -22,7 +22,8 @@
     "nunjucks-hapi": "^1.1.0",
     "sails-disk": "^0.10.7",
     "waterline": "^0.10.19",
-    "waterline-fixtures": "^0.2.3"
+    "waterline-fixtures": "^0.2.3",
+    "winston": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {

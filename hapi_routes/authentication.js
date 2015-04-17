@@ -1,5 +1,4 @@
 var Joi = require('joi'),
-    //User = require('../database_models/user'),
     RouteAuthentication = require('../tools/route_authentication'),
     Config = require('../config');
 
@@ -36,9 +35,8 @@ var loginPostRoute = {
 
             var User = request.model.user;
 
-            User.findOne({ email: request.payload.email }, function (err, user) {
-                if (err) throw err;
-
+            User.findOne({ email: request.payload.email })
+            .then(function (user) {
                 if (user) {
                     user.verifyPassword(request.payload.password, function(err, isMatch) {
                         if (err) throw err;
@@ -51,18 +49,19 @@ var loginPostRoute = {
                         }
                     });
                 } else {
-                    console.log("creating user");
                     User.create({
                         email: request.payload.email,
                         password: request.payload.password
                     }, function (err, newUser) {
                         if (err) throw err;
 
-                        console.log(newUser.toJSON());
                         request.auth.session.set(newUser.toJSON());
                         reply({ redirect: "/" });
                     });
                 }
+            })
+            .catch(function (e) {
+                throw e;
             });
         }
     },
