@@ -33,8 +33,7 @@ gulp.task('sass', function() {
 
 // Concatenate Third-party CSS
 gulp.task('third-party-css', function() {
-    return gulp.src(['bower_components/*/lib/*.css'
-                     'third-party-libraries/*.css'])
+    return gulp.src(['bower_components/*/lib/*.css'])
         .pipe(concat('third-party.min.css'))
         .pipe(minifyCSS({ keepBreaks: false }))
         .pipe(gulp.dest('public/css'));
@@ -50,8 +49,7 @@ gulp.task('scripts', function() {
 
 // Concatenate Third-party JS
 gulp.task('third-party-scripts', function() {
-    return gulp.src(['bower_components/*/lib/*.js',
-                     'third-party-libraries/*.js'])
+    return gulp.src(['bower_components/*/lib/*.js'])
         .pipe(concat('third-party.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('public/js'));

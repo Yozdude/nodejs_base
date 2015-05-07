@@ -24,8 +24,7 @@ Common Tasks
 #### Adding Third-Party Libraries
 - **CDN**: If the library offers it and you prefer to use a CDN, add it to [empty.html](html_templates/empty.html), which acts as a core template for all pages on the site.
 - **Bower**: If the library can be installed via [Bower][], run the install command (with `--save` so it's stored in your bower.json). Then, depending on how the library's Bower file is formatted its files may be added autmatically when running `gulp`. To check this, open [gulpfile.js](gulpfile.js) and check the *third-party-css* and *third-party-scripts* tasks. the first line in each of these functions uses wildcards to check for css and js files in Bower libraries. If these wildcard checks don't resolve to the locations of the css and js files of the library you just installed (now in the *bower_components* folder), add a new path so that it does.
-- **Manually**: Download the library and add the relevant css and js files to the [third-party-libraries](third-party-libraries/) folder.
-
+- **Manually**: Download the library and add it somewhere in this project (probably a new *third-party-libraries* folder). Then edit the [gulpfile](gulpfile.js) *third-party-css* and *third-party-scripts* tasks to include the css and js files for this library.
 
 Miscellaneous Things To Know
 ------------
