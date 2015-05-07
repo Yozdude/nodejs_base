@@ -6,13 +6,20 @@ var jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
-    minifyCSS = require('gulp-minify-css');
+    minifyCSS = require('gulp-minify-css'),
+    install = require('gulp-install');
 
-// Lint Task
+// JSHint Task
 gulp.task('lint', function() {
     return gulp.src('private/js/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
+});
+
+// Install Task
+gulp.task('install', function() {
+    return gulp.src(['./bower.json'])
+        .pipe(install());
 });
 
 // Compile Sass
@@ -26,7 +33,8 @@ gulp.task('sass', function() {
 
 // Concatenate Third-party CSS
 gulp.task('third-party-css', function() {
-    return gulp.src('bower_components/*/lib/*.css')
+    return gulp.src(['bower_components/*/lib/*.css'
+                     'third-party-libraries/*.css'])
         .pipe(concat('third-party.min.css'))
         .pipe(minifyCSS({ keepBreaks: false }))
         .pipe(gulp.dest('public/css'));
@@ -42,8 +50,10 @@ gulp.task('scripts', function() {
 
 // Concatenate Third-party JS
 gulp.task('third-party-scripts', function() {
-    return gulp.src('bower_components/*/lib/*.min.js')
+    return gulp.src(['bower_components/*/lib/*.js',
+                     'third-party-libraries/*.js'])
         .pipe(concat('third-party.min.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('public/js'));
 });
 
@@ -54,4 +64,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'third-party-css', 'scripts', 'third-party-scripts', 'watch']);
+gulp.task('default', ['lint', 'install', 'sass', 'third-party-css', 'scripts', 'third-party-scripts', 'watch']);

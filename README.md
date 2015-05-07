@@ -13,16 +13,24 @@ TODO
 Setup
 ------------
 
-1. Install [Node.js][], [NPM][], [Bower][], and [Gulp][].
-2. Run `bower install` to get bower packages
-3. Run `npm install` to get Node.js packages
-4. Run 'gulp' to run the program
-5. Go to port `8000` (or whatever port you set in config.js) on the server
+1. Install [Node.js][] and [NPM][].
+2. Run `npm install` to get Node.js packages
+3. Run `gulp` to error-check javascript, Bower packages, and compile + minify code.
+4. Run `node main` to run the program
+5. Open a web browser and go to `localhost:8000` (replace 8000 if you altered config.js with whatever your new server.port number is)
+
+Common Tasks
+------------
+#### Adding Third-Party Libraries
+- **CDN**: If the library offers it and you prefer to use a CDN, add it to [empty.html](html_templates/empty.html), which acts as a core template for all pages on the site.
+- **Bower**: If the library can be installed via [Bower][], run the install command (with `--save` so it's stored in your bower.json). Then, depending on how the library's Bower file is formatted its files may be added autmatically when running `gulp`. To check this, open [gulpfile.js](gulpfile.js) and check the *third-party-css* and *third-party-scripts* tasks. the first line in each of these functions uses wildcards to check for css and js files in Bower libraries. If these wildcard checks don't resolve to the locations of the css and js files of the library you just installed (now in the *bower_components* folder), add a new path so that it does.
+- **Manually**: Download the library and add the relevant css and js files to the [third-party-libraries](third-party-libraries/) folder.
 
 
-Things-To-Know
+Miscellaneous Things To Know
 ------------
 - The default database `sails-disk` stores its data in `.tmp` in the base directory of the project.
+- All logs are automatically written to `logfile.log`
 
 
 Tech Stack
