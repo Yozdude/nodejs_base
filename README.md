@@ -7,7 +7,14 @@ A base project to work off of when creating simple Node.js applications. Aims to
 Features
 ------------
 
-TODO
+- Simple URL route creation via [Hapi][].
+- Powerful templating engine [Nunjucks][].
+- Automated change detection and redeployment with [Nodemon][] and [BrowserSync][].
+- Basic account creation and authentication using cookies.
+- Abstracted datbase layer via [Waterline][].
+- Use and ompilation of Sass for styling.
+- Minification and concatentation of javascript and css.
+- Comes with [Bootstrap][] and a simple initial layout.
 
 
 Setup
@@ -15,22 +22,30 @@ Setup
 
 1. Install [Node.js][] and [NPM][].
 2. Run `npm install` to get Node.js packages
-3. Run `gulp` to error-check javascript, Bower packages, and compile + minify code.
-4. Run `node main` to run the program
-5. Open a web browser and go to `localhost:8000` (replace 8000 if you altered config.js with whatever your new server.port number is)
+3. Run `gulp` to install Bower packages, compile scss, concat+minify js/css/html, run the main program, run [BrowserSync][], and open your browser to view the page via BrowserSync. Alternatively, go directly to `localhost:8000` in your brower of choice to accress the site directly (assuming you haven't changed the default port to something other than 8000).
 
 Common Tasks
 ------------
 #### Adding Third-Party Libraries
 - **CDN**: If the library offers it and you prefer to use a CDN, add it to [empty.html](html_templates/empty.html), which acts as a core template for all pages on the site.
-- **Bower**: If the library can be installed via [Bower][], run the install command (with `--save` so it's stored in your bower.json). Then, depending on how the library's Bower file is formatted its files may be added autmatically when running `gulp`. To check this, open [gulpfile.js](gulpfile.js) and check the *third-party-css* and *third-party-scripts* tasks. the first line in each of these functions uses wildcards to check for css and js files in Bower libraries. If these wildcard checks don't resolve to the locations of the css and js files of the library you just installed (now in the *bower_components* folder), add a new path so that it does.
-- **Manually**: Download the library and add it somewhere in this project (probably a new *third-party-libraries* folder). Then edit the [gulpfile](gulpfile.js) *third-party-css* and *third-party-scripts* tasks to include the css and js files for this library.
+- **Bower**: If the library can be installed via [Bower][], run the install command (with `--save` so it's stored in your bower.json). Then add the paths to the required js and css files to [config.js](config.js) under *thirdParty.js* and *thirdParty.css* tasks.
+- **Manually**: Download the library and add it somewhere in this project (probably a new *third-party-libraries* folder). Then add the paths to the required js and css files to [config.js](config.js) under *thirdParty.js* and *thirdParty.css* tasks.
 
-Miscellaneous Things To Know
+#### Editing [BrowserSync][] Configuration/Seeing Stats
+- Go to the BrowserSync admin port, which is the regular port (3000 by default) plus 1, so 3001 by default.
+- Edit the configuration and see all the statistics that BrowserSync has collected.
+
+#### Manually Edit/Delete the database
+- The default database `sails-disk` is stored in the `.tmp` directory at the base of the project.
+
+#### Read Logs
+- All logs are stored in `logfile.log` in the base directory.
+
+
+Known Issues
 ------------
-- The default database `sails-disk` stores its data in `.tmp` in the base directory of the project.
-- All logs are automatically written to `logfile.log`
 
+- [BrowserSync][] is slow to reload in my development environment (takes over a minute). Refreshing the page manually is much quicker (but I know, defats some of the purpose of BrowserSync).
 
 Tech Stack
 ------------
@@ -39,8 +54,10 @@ Tech Stack
 - [NPM][] - Node.js package manager
 - [Bower][] - Package manager
 - [Gulp][] - Build andnworkflow automation
+- [Nodemon][] - Automated change detection and redeployment
+- [BrowserSync][] - Coordinates changes across multiple simultanneous browsers and gathers statistics
 - [Hapi][] - Web framework
-- [Waterline][], [Dog Water][] - Abstracted ORM management and hook into web framework
+- [Waterline][], [Dog Water][] - Abstracted database management and hook into web framework
 - [Bluebird][], [Async][] - Promises and command-execution structuring
 - [Joi][] - Verification of endpoint arguments
 - [Winston][] - Logging
@@ -53,16 +70,19 @@ TODO
 ------------
 
 - Make the whole application single-page friendly (this may seem to go against the spirit of templating, but given that both are optional it would be a powerful feature to have)
-- Minify HTML templates
-- Add live-change updating (like nodemon, but detects changes in css, html, etc). BrowserSync perhaps?
-- Add caching
-- Add some basic debug options
+- Add live-change updating with BrowserSync
+- Add a fancy Bootstrap theme
+- User profile page
+- Add showcase page to top bar
+- Restructure folders to be neater (private and public into static -> private/public, for example)
 
 
 [Node.js]: https://nodejs.org/
 [NPM]: https://www.npmjs.com/
 [Bower]: http://bower.io/
 [Gulp]: http://gulpjs.com/
+[BrowserSync]: http://www.browsersync.io/
+[Nodemon]: http://nodemon.io/
 [Hapi]: http://hapijs.com/
 [Waterline]: https://github.com/balderdashy/waterline
 [Dog Water]: https://github.com/devinivy/dogwater

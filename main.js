@@ -10,7 +10,7 @@ var server = new Hapi.Server(),
       new (Winston.transports.File)({ filename: 'logfile.log' })
     ]
   });
-server.connection({ port: Config.server.port });
+server.connection(Config.server.hapi);
 
 server.register([
     {

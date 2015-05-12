@@ -25,7 +25,7 @@ var loginPostRoute = {
         validate: {
             payload: {
                 email: Joi.string().email().required(),
-                password: Joi.string().required()
+                password: Joi.string().min(4, 'utf8').max(256, 'utf8').required()
             }
         },
         handler: function(request, reply) {

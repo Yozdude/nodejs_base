@@ -13,10 +13,15 @@ module.exports = {
         models: require('./database_models/all')
     },
     server: {
-        port: 8000
+        hapi: {
+            port: 8000
+        },
+        browserSync: {
+            port: 3000
+        }
     },
     nunjucks: {
-        templatePath: path.join(__dirname, 'html_templates')
+        templatePath: path.join(__dirname, 'html_templates/minified/')
     },
     app: {
         name: "Node.js Base",
@@ -31,5 +36,13 @@ module.exports = {
             isSecure: false, // Change to true if you're using SSL
             ttl: 7 * 24 * 60 * 60 * 1000 // Time-to-live of 7 days
         }
+    },
+    thirdParty: {
+        js: [
+            'bower_components/sweetalert/lib/sweet-alert.js'
+        ],
+        css: [
+            'bower_components/sweetalert/lib/sweet-alert.css'
+        ]
     }
 };
