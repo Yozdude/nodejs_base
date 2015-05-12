@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4">
-        <div class="panel panel-info panel-login">
+        <div class="panel panel-primary panel-login">
           <div class="panel-heading">
             <h1>{{ app.name }}</h1>
           </div>
@@ -16,7 +16,7 @@
               <input id="password" type="password" class="form-control" placeholder="Password">
               <button id="submit" class="btn btn-success">Login/Register</button>
             </div>
-            <span class="tiny-text lowered-text float-left">version htrsjyrgjtrdhf {{ app.version }}</span>
+            <span class="tiny-text lowered-text float-left">version {{ app.version }}</span>
             <span class="tiny-text lowered-text float-right">created by <a href="{{ app.creatorUrl }}">{{ app.creatorName }}</a></span>
           </div>
         </div>

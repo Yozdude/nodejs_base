@@ -34,7 +34,8 @@ var indexRoute = {
         handler: function(request, reply) {
             reply.view('index.html', {
                 app: Config.app,
-                user: request.auth.credentials
+                user: request.auth.credentials,
+                navHome: true
             });
         }
     }

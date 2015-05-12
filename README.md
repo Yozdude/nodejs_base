@@ -15,6 +15,7 @@ Features
 - Use and ompilation of Sass for styling.
 - Minification and concatentation of javascript and css.
 - Comes with [Bootstrap][] and a simple initial layout.
+- Uses the [United][] theme from [Bootswatch][].
 
 
 Setup
@@ -22,7 +23,7 @@ Setup
 
 1. Install [Node.js][] and [NPM][].
 2. Run `npm install` to get Node.js packages
-3. Run `gulp` to install Bower packages, compile scss, concat+minify js/css/html, run the main program, run [BrowserSync][], and open your browser to view the page via BrowserSync. Alternatively, go directly to `localhost:8000` in your brower of choice to accress the site directly (assuming you haven't changed the default port to something other than 8000).
+3. Run `gulp` to install Bower packages, compile scss, concat+minify js+css, run the main program, run [BrowserSync][], and open your browser to view the page via BrowserSync. Alternatively, go directly to `localhost:8000` in your brower of choice to accress the site directly (assuming you haven't changed the default port to something other than 8000).
 
 Common Tasks
 ------------
@@ -45,7 +46,8 @@ Common Tasks
 Known Issues
 ------------
 
-- [BrowserSync][] is slow to reload in my development environment (takes over a minute). Refreshing the page manually is much quicker (but I know, defats some of the purpose of BrowserSync).
+- [BrowserSync][] is sometimes slow to reload in my development environment (taking over a minute). However, refreshing the page manually results in a regular near-instant reload.
+- HTML minification has been disabled due to issues it caused with the templating engine.
 
 Tech Stack
 ------------
@@ -70,10 +72,7 @@ TODO
 ------------
 
 - Make the whole application single-page friendly (this may seem to go against the spirit of templating, but given that both are optional it would be a powerful feature to have)
-- Add live-change updating with BrowserSync
-- Add a fancy Bootstrap theme
 - User profile page
-- Add showcase page to top bar
 - Restructure folders to be neater (private and public into static -> private/public, for example)
 
 
@@ -93,5 +92,7 @@ TODO
 [Nunjucks]: http://mozilla.github.io/nunjucks/
 [Nunjucks Hapi]: https://github.com/seldo/nunjucks-hapi
 [Bootstrap]: http://getbootstrap.com/
+[Bootswatch]: http://bootswatch.com/
+[United]: http://bootswatch.com/united/
 [FontAwesome]: http://fortawesome.github.io/Font-Awesome/
 [SweetAlert]: http://tristanedwards.me/sweetalert

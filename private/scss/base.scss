@@ -11,7 +11,7 @@ body .btn {
     font-size: 16px;
 }
 
-.alert-primary {
+.alert {
     bottom: 0px;
     left: 0px;
     display: none;
@@ -42,7 +42,7 @@ Login Page
     margin-bottom: 10px;
 }
 
-.panel-login input[type="submit"] {
+.panel-login .btn {
     width: 100%;
 }
 

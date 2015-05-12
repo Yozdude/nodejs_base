@@ -51,7 +51,11 @@ $(function () {
     });
     $(document).ajaxError(function (event, xhr, settings, thrownError) {
         if (xhr.responseJSON && xhr.responseJSON.message) {
-            flashError(xhr.responseJSON.message);
+            var msg = xhr.responseJSON.message;
+            if (msg.indexOf("fails because [") != -1) {
+                msg = msg.substring(msg.indexOf("[") + 1, msg.lastIndexOf("]"));
+            }
+            flashError(msg);
         } else {
             flashError("Server error! Check the console for more info");
             console.log(xhr);

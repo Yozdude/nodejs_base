@@ -21,7 +21,7 @@ module.exports = {
         }
     },
     nunjucks: {
-        templatePath: path.join(__dirname, 'html_templates/minified/')
+        templatePath: path.join(__dirname, 'html_templates/')
     },
     app: {
         name: "Node.js Base",

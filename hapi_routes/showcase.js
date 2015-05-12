@@ -8,7 +8,8 @@ var showcaseRoute = {
         handler: function(request, reply) {
             reply.view('showcase.html', {
                 app: Config.app,
-                user: request.auth.credentials
+                user: request.auth.credentials,
+                navShowcase: true
             });
         }
     }
