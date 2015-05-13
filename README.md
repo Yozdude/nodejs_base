@@ -1,4 +1,4 @@
-##### *"After me cometh a Builder. Tell him, I too have known!"*
+#### *"After me cometh a Builder. Tell him, I too have known!"*
 -- *The Palace* by Rudyard Kipling, 1902
 
 nodejs_base
