@@ -139,4 +139,4 @@ RouteAuthentication.noLogin(successPopupRoute);
 RouteAuthentication.noLogin(warningPopupRoute);
 RouteAuthentication.noLogin(errorPopupRoute);
 
-module.exports = [showcaseRoute, successMessageRoute, infoMessageRoute, warningMessageRoute, errorMessageRoute, redirectRoute, genericPopupRoute, successPopupRoute, errorPopupRoute, warningPopupRoute]
+module.exports = [showcaseRoute, successMessageRoute, infoMessageRoute, warningMessageRoute, errorMessageRoute, redirectRoute, genericPopupRoute, successPopupRoute, errorPopupRoute, warningPopupRoute];

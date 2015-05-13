@@ -29,7 +29,7 @@ bower_components
 # Minified files
 *.min.css
 *.min.js
-html_templates/minified/*.html
+#html_templates/minified/*.html
 
 # Database Files
 .tmp

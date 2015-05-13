@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Profile</h1>
+  <div>
+    <h3><span class="label label-default">Email</span> {{ user.email }}</h3>
+  </div>
+  <div>
+    <button id="changePasswordButton" class="btn btn-info">Change Password</button>
+  </div>
+  <div id="newPasswordForm" class="form-group" style="display: none;">
+    <div class="col-md-3">
+      <input type="password" id="oldPassword" class="form-control" placeholder="Current Password">
+    </div>
+    <div class="col-md-3">
+      <input type="password" id="newPasswordA" class="form-control" placeholder="New Password">
+    </div>
+    <div class="col-md-3">
+      <input type="password" id="newPasswordB" class="form-control" placeholder="Repeat New Password">
+    </div>
+    <div class="col-md-3">
+      <button id="submitNewPasswordButton" class="btn btn-success">Submit</button>
+    </div>
+    <div class="col-md-12">
+      <b id="newPasswordError" class="help-inline help-danger"></b>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block foot %}
+<script type="text/javascript">
+  $(function () {
+    $("#changePasswordButton").click(function () {
+      $("#newPasswordForm").slideToggle();
+    });
+
+    $("#oldPassword").keypress(function (e) {
+      if (e.which == 13) {
+        e.preventDefault();
+        $("#newPasswordA").focus()
+      }
+    });
+
+    $("#newPasswordA").keypress(function (e) {
+      if (e.which == 13) {
+        e.preventDefault();
+        $("#newPasswordB").focus();
+      }
+    });
+
+    $("#newPasswordB").keypress(function (e) {
+      if (e.which == 13) {
+        e.preventDefault();
+        $("#submitNewPasswordButton").trigger("click");
+      }
+    });
+
+    $("#submitNewPasswordButton").click(function () {
+      var oldPassword = $("#oldPassword").val(),
+          newPasswordA = $("#newPasswordA").val(),
+          newPasswordB = $("#newPasswordB").val(),
+          error = "";
+
+      if (!oldPassword || !newPasswordA || !newPasswordB) {
+        error = "Fill in all fields";
+      } else if (newPasswordA !== newPasswordB) {
+        error = "New passwords don't match";
+      }
+
+      $("#newPasswordError").text(error)
+
+      if (!error) {
+        $("#oldPassword").parent().removeClass("has-error");
+        $.post("/profile/password/change", {
+          oldPassword: oldPassword,
+          newPassword: newPasswordA
+        }, function (data) {
+          if (data.success) {
+            $("#oldPassword").val("");
+            $("#newPasswordA").val("");
+            $("#newPasswordB").val("");
+            $("#oldPassword").parent().removeClass("has-error");
+            $("#newPasswordForm").slideToggle();
+          }
+        });
+      } else {
+        $("#oldPassword").parent().addClass("has-error");
+      }
+    });
+  });
+</script>
+{% endblock %}

@@ -38,7 +38,7 @@ var loginPostRoute = {
             User.findOne({ email: request.payload.email })
             .then(function (user) {
                 if (user) {
-                    user.verifyPassword(request.payload.password, function(err, isMatch) {
+                    user.verifyPassword(request.payload.password, function (err, isMatch) {
                         if (err) throw err;
 
                         if (isMatch) {
@@ -83,4 +83,4 @@ RouteAuthentication.tryLogin(loginPageRoute);
 RouteAuthentication.tryLogin(loginPostRoute);
 RouteAuthentication.requireLogin(logoutPostRoute);
 
-module.exports = [loginPageRoute, loginPostRoute, logoutPostRoute]
+module.exports = [loginPageRoute, loginPostRoute, logoutPostRoute];

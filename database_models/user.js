@@ -59,7 +59,7 @@ var User = {
     },
 
     beforeUpdate: function(values, cb) {
-        if (attrs.newPassword) {
+        if (values.newPassword) {
             // generate a salt
             bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
                 if (err) return cb(err);

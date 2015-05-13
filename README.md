@@ -1,3 +1,6 @@
+##### *"After me cometh a Builder. Tell him, I too have known!"*
+-- *The Palace* by Rudyard Kipling, 1902
+
 nodejs_base
 ===========
 
@@ -39,7 +42,7 @@ Common Tasks
 #### Manually Edit/Delete the database
 - The default database `sails-disk` is stored in the `.tmp` directory at the base of the project.
 
-#### Read Logs
+#### View Logs
 - All logs are stored in `logfile.log` in the base directory.
 
 
@@ -71,9 +74,7 @@ Tech Stack
 TODO
 ------------
 
-- Make the whole application single-page friendly (this may seem to go against the spirit of templating, but given that both are optional it would be a powerful feature to have)
-- User profile page
-- Restructure folders to be neater (private and public into static -> private/public, for example)
+- Figure out where html minification is breaking things and fix it.
 
 
 [Node.js]: https://nodejs.org/

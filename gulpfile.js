@@ -60,7 +60,8 @@ gulp.task('third-party-scripts', function () {
         .pipe(gulp.dest('public/js'));
 });
 
-// Minify HTML - TEMPORARILY DISABLED
+// Minify HTML - TEMPORARILY DISABLED: See "Known Issues" in README
+/*
 gulp.task('minify-html', function () {
     return gulp.src('html_templates/*.html')
         .pipe(htmlmin({
@@ -71,6 +72,7 @@ gulp.task('minify-html', function () {
         }))
         .pipe(gulp.dest('html_templates/minified'));
 });
+*/
 
 // All tasks related to building the project
 gulp.task('build', ['lint', 'sass', 'scripts', 'third-party-css', 'third-party-scripts']);
